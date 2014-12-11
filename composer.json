@@ -1,0 +1,31 @@
+{
+    "name":"samsonos/commerce_core",
+    "description": "SamsonPHP commerce core module",
+    "keywords": [ "commerce", "samsonos commerce"],
+    "authors":[
+        {
+        "name":"Vitaly Iegorov",
+        "email":"egorov@samsonos.com"
+        },
+        {
+        "name":"Alex Storchovyy",
+        "email":"storchovyy@samsonos.com"
+        }
+    ],
+    "minimum-stability":"dev",
+    "require":{
+        "samsonos/commerce_core": "*",
+        "liqpay/sdk-php": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "license":"Open Software License (OSL) v 3.0",
+    "homepage":"http://samsonos.com/",
+    "autoload" : {
+        "classmap": ["src/"],
+        "psr-0": {
+            "samsonos\\liqpay\\": "src/"
+        }
+    }
+}
