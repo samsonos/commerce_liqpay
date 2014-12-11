@@ -1,7 +1,7 @@
 {
-    "name":"samsonos/commerce_core",
-    "description": "SamsonPHP commerce core module",
-    "keywords": [ "commerce", "samsonos commerce"],
+    "name":"samsonos/commerce_liqpay",
+    "description": "SamsonPHP liqpay module",
+    "keywords": [ "liqpay", "samsonos liqpay"],
     "authors":[
         {
         "name":"Vitaly Iegorov",
