@@ -8,6 +8,10 @@
         "email":"egorov@samsonos.com"
         },
         {
+            "name":"Nikita Kotenko",
+            "email":"kotenko@samsonos.com"
+        },
+        {
         "name":"Alex Storchovyy",
         "email":"storchovyy@samsonos.com"
         }
@@ -15,7 +19,8 @@
     "minimum-stability":"dev",
     "require":{
         "samsonos/commerce_core": "*",
-        "liqpay/liqpay": "*"
+        "liqpay/liqpay": "*",
+        "samsonos/i18n":"*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"
