@@ -21,14 +21,15 @@ class Liqpay extends CompressableService
     public $publicKey;
     public $privateKey;
     public $resultUrl;
+    public $userId = 1;
 
     private $gate;
 
 
 
-    public function init()
+    public function init(array $params = array())
     {
-        parent::init();
+        parent::init($params);
 
         $this->gate = new \LiqPay($this->publicKey, $this->privateKey);
         if (!isset($this->resultUrl)) {
