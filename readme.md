@@ -1,4 +1,4 @@
-#SamsonPHP LiqPay module
+#SamsonPHP Commerce LiqPay module
 
 [![Latest Stable Version](https://poser.pugx.org/samsonos/commerce_liqpay/v/stable.svg)](https://packagist.org/packages/samsonos/commerce_liqpay)
 [![Build Status](https://travis-ci.org/samsonos/commerce_liqpay.png)](https://travis-ci.org/samsonos/commerce_liqpay)
