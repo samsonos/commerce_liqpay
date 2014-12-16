@@ -6,7 +6,8 @@
 namespace samsonos\commerce\liqpay;
 
 use samson\core\CompressableService;
-use samson\core\Config;
+use samson\core\Event;
+use samsonos\commerce\Payment;
 
 
 /**
@@ -35,6 +36,8 @@ class Liqpay extends CompressableService
         if (!isset($this->resultUrl)) {
             $this->resultUrl = url_build('/');
         }
+
+        Event::fire('commerce.gateinited',array(& $this));
     }
 
     public function createForm($Payment)
@@ -60,18 +63,23 @@ class Liqpay extends CompressableService
 
             if ($hash == $_POST['signature'])
             {
-                $paymentId = (string)$result->order_id;
-
-                if( (string)$result->status == 'success'){
-
+                $status = Payment::STATUS_FAIL;
+                $comment = '';
+                switch ((string)$result->status) {
+                    case 'success':
+                        $status = Payment::STATUS_SUCCESS;
+                        $comment = 'Оплата прошла успешно';
+                        break;
+                    case 'wait_secure':
+                        $status = Payment::STATUS_WAIT_SECURE;
+                        break;
+                    case 'failure':
+                        $status = Payment::STATUS_FAIL;
+                        $comment = 'Ошибка оплаты';
+                        break;
                 }
-                if((string) $result->status == 'wait_secure'){
 
-                }
-
-                if((string) $result->status == 'failure'){
-
-                }
+                Event::fire('commerce.update.status', array('Payment', (string)$result->order_id, $status, $comment));
             }
         }
         url()->redirect();
