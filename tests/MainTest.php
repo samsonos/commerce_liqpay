@@ -1,7 +1,7 @@
 <?php
 namespace tests;
 /**
- * Created by Vitaly Iegorov <egorov@samsonos.com>
+ * Created by Nikita Kotenko <kotenko@samsonos.com>
  * on 04.08.14 at 16:42
  */
 class MainTest extends \PHPUnit_Framework_TestCase
