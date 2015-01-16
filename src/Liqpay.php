@@ -6,7 +6,7 @@
 namespace samsonos\commerce\liqpay;
 
 use samson\core\CompressableService;
-use samson\core\Event;
+use samsonphp\event\Event;
 use samsonos\commerce\Payment;
 
 
@@ -46,7 +46,7 @@ class Liqpay extends CompressableService
             'version'        => '3',
             'amount'         => $Payment->Amount,
             'currency'       => $Payment->Currency,
-            'description'    => t("Оплата за заказ - ").$Payment->id,
+            'description'    => t("Оплата за заказ - ", true).$Payment->id,
             'order_id'       => $Payment->id,
             'result_url'     => $this->resultUrl,
             'server_url'     => url_build('liqpay','status')
