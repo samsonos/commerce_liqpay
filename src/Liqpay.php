@@ -9,8 +9,6 @@ use samson\core\CompressableService;
 use samsonphp\event\Event;
 use samsonos\commerce\Payment;
 use samsonos\commerce\PaymentLog;
-use samsonos\commerce\Order;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * SamsonPHP Liqpay module
@@ -30,8 +28,14 @@ class Liqpay extends CompressableService
     /** @var  string this is the result url which will use for redirect */
     public $resultUrl;
 
+    /** @var  string this is the result url which will be used for receiving data from liqpay */
+    public $serverUrl;
+
     /** @var int is the user id */
     public $userId = 1;
+
+    /** @var int if need use test mode in liqpay set: 1 in configuration */
+    public $sandBox = 0;
 
     /** @var \LiqPay api instance */
     private $gate;
@@ -70,10 +74,8 @@ class Liqpay extends CompressableService
             'description'    => t("Оплата за заказ - ", true).' '.$Payment->OrderId,
             'order_id'       => $Payment->OrderId,
             'result_url'     => $this->resultUrl,
-            //'server_url'     => url_build('liqpay','status')
-            //TODO change it for production
-            'server_url'     => 'http://molodyko.yourtour.local.samsonos.com/liqpay/status',
-            'sandbox'        => 1
+            'server_url'     => isset($this->serverUrl) ? $this->serverUrl : url_build('liqpay','status'),
+            'sandbox'        => $this->sandBox
         ));
     }
 
@@ -109,7 +111,7 @@ class Liqpay extends CompressableService
 
             return $payment;
         }
-        new Exception('Order not found');
+        new \Exception('Order not found');
     }
 
     /**
@@ -167,6 +169,6 @@ class Liqpay extends CompressableService
                 Event::fire('commerce.update.status', array($payment));
             }
         }
-        exit;
+        s()->async(true);
     }
 }
